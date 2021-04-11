@@ -52,7 +52,8 @@ namespace DomainBusinessLogic.Tests
             _userManager.GetAllUsersAsync(filter);
             
             // Assert
-            Mock.Get(_mockRepository).Verify(repo => repo.ListAsync(), Times.Once);
+            Mock.Get(_mockRepository).Verify(repo 
+                => repo.ListAsync(It.IsAny<ISpecification<User, UserModel>>()), Times.Once);
         }
     }
 }
