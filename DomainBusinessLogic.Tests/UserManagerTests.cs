@@ -1,5 +1,6 @@
 using Ardalis.Specification;
 using DomainBusinessLogic.Interfaces;
+using DomainBusinessLogic.Models;
 using DomainBusinessLogic.Services;
 using Entities;
 using Moq;
@@ -44,8 +45,11 @@ namespace DomainBusinessLogic.Tests
         [Test]
         public void UserManager_GetAllUsers_CalledRepositoryToListAsyncOnce()
         {
+            //Arrange
+            PaginationFilter filter = new PaginationFilter();
+            
             // Act
-            _userManager.GetAllUsersAsync();
+            _userManager.GetAllUsersAsync(filter);
             
             // Assert
             Mock.Get(_mockRepository).Verify(repo => repo.ListAsync(), Times.Once);

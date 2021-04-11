@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ardalis.Specification;
 using DomainBusinessLogic.Interfaces;
+using DomainBusinessLogic.Models;
+using DomainBusinessLogic.Specifications;
 using Entities;
 
 namespace DomainBusinessLogic.Services
@@ -25,9 +27,9 @@ namespace DomainBusinessLogic.Services
             return strategy.RegisterUserAsync(user);
         }
 
-        public Task<List<User>> GetAllUsersAsync()
+        public Task<List<UserModel>> GetAllUsersAsync(PaginationFilter pager)
         {
-            return _userRepository.ListAsync();
+            return _userRepository.ListAsync(new GetAllUsersSpecification(pager));
         }
     }
 }

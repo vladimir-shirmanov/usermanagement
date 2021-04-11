@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using DomainBusinessLogic.Interfaces;
+using DomainBusinessLogic.Models;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,9 +33,11 @@ namespace UserManagement.WebApi.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<List<User>> GetAllUsers()
+        public async Task<IActionResult> GetAllUsers([FromQuery] PaginationFilter filter)
         {
-            return await _userManager.GetAllUsersAsync();
+            var users = await _userManager.GetAllUsersAsync(filter);
+
+            return this.Ok(users);
         }
     }
 }

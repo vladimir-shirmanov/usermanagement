@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DomainBusinessLogic.Models;
 using Entities;
 
 namespace DomainBusinessLogic.Interfaces
@@ -8,6 +9,6 @@ namespace DomainBusinessLogic.Interfaces
     {
         Task RegisterUser(User user);
 
-       Task<List<User>> GetAllUsersAsync();
+       Task<List<UserModel>> GetAllUsersAsync(PaginationFilter pager);
     }
 }
